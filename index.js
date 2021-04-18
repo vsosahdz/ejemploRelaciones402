@@ -6,6 +6,8 @@ const path = require("path")
 const express = require('express');
 const alumnoRoutes = require("./routes/alumno")
 const tareaRoutes = require("./routes/tarea")
+const grupoRoutes = require("./routes/grupo");
+const grupoAlumnoRoutes = require("./routes/grupoAlumno");
 
 //Traer la conexión de la base de datos
 const sequelize = require('./util/database');
@@ -14,6 +16,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use('/alumno',alumnoRoutes);
 app.use('/tarea',tareaRoutes);
+app.use('/grupo',grupoRoutes);
+app.use('/grupoAlumno',grupoAlumnoRoutes);
 
 
 
