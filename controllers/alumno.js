@@ -1,5 +1,7 @@
 //Traer el modelo dentro del objeto de conexión
-const Alumno =require('../util/database').models.alumno;
+const Sequelize = require('sequelize');
+const sequelize = require('../util/database');
+const Alumno = sequelize.models.alumno;
 
 exports.postAgregarAlumno =(req, res)=>{
     console.log(req.body);
@@ -13,3 +15,22 @@ exports.postAgregarAlumno =(req, res)=>{
             res.send("Hubo un problema");
         })
 }
+
+exports.getConsultaAlumno=(req, res)=>{
+    sequelize.query("SELECT * FROM alumno",{
+        type: Sequelize.QueryTypes.SELECT
+    }).then(alumnos=>{
+        console.log(alumnos);
+    })
+    .catch(err=>console.log(err))
+    res.send("Query ejecutada");
+}
+
+exports.getConsultaAlumno2 = (req,res)=>{
+    sequelize.query("SELECT * FROM alumno",{
+        model:Alumno,
+        mapTopModel: true
+    }).then(alumnos=>{
+        console.log(alumnos)
+    }).catch(err=>console.log(err))
+};
