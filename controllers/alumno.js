@@ -2,6 +2,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../util/database');
 const Alumno = sequelize.models.alumno;
+const path = require('path');
 
 exports.postAgregarAlumno =(req, res)=>{
     console.log(req.body);
@@ -34,3 +35,7 @@ exports.getConsultaAlumno2 = (req,res)=>{
         console.log(alumnos)
     }).catch(err=>console.log(err))
 };
+
+exports.getGraph = (req,res)=>{
+    res.sendFile(path.join(__dirname,'..','views','ejemploGraph.html'));
+}
